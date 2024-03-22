@@ -27,7 +27,10 @@ object Session {
       .setAppName("htx_spark_test")
       .set("spark.executor.memory", "4g") // Set executor memory
       .set("spark.driver.memory", "2g") // Set driver memory
-      .set("spark.sql.shuffle.partitions", "4") // Set number of shuffle partitions
+      .set(
+        "spark.sql.shuffle.partitions",
+        "4"
+      ) // Set number of shuffle partitions
 
     val spark: SparkSession = SparkSession
       .builder()

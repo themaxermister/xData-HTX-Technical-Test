@@ -21,14 +21,16 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api._
 import util.Session.{createParquetFile, createSparkSession, readParquetFile}
 import util.Structures.{detectionRowEncoder, itemRankRowEncoder, locationRowEncoder}
-import util.Utils.{DETECTION_SIZE, LOCATION_SIZE, deleteRecursively}
+import util.Utils.deleteRecursively
 
 @TestMethodOrder(classOf[OrderAnnotation])
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class SessionTest {
   private val parquetFilePath: String = "src/test/resources/"
-  private val size = 10
-  private val dataGen = DataGenerators(LOCATION_SIZE, DETECTION_SIZE)
+  private val item_size = 10
+  private val detection_size = 1000
+  private val location_size = 100
+  private val dataGen = DataGenerators(location_size, detection_size)
 
   @Test
   @Order(1)
@@ -62,7 +64,7 @@ class SessionTest {
     val fileLocation = parquetFilePath + "locations.parquet/"
     val spark = createSparkSession()
     val rdd = readParquetFile(fileLocation)(spark)
-    assert(rdd.count() == size)
+    assert(rdd.count() == location_size)
     spark.close()
   }
 
@@ -71,7 +73,7 @@ class SessionTest {
   def testCreateDetectionParquetFile(): Unit = {
     val fileLocation = parquetFilePath + "detections.parquet/"
     val spark = createSparkSession()
-    val detectionRecords = dataGen.generateDetectionData(size)
+    val detectionRecords = dataGen.generateDetectionData()
     val detectionRecordsRDD = spark.sparkContext.parallelize(detectionRecords)
 
     createParquetFile(detectionRecordsRDD, parquetFilePath + fileLocation)(
@@ -89,7 +91,7 @@ class SessionTest {
   def testCreateItemParquetFile(): Unit = {
     val fileLocation = parquetFilePath + "items.parquet/"
     val spark = createSparkSession()
-    val itemRecords = dataGen.generateItemData(size)
+    val itemRecords = dataGen.generateItemData(item_size)
     val itemRecordsRDD = spark.sparkContext.parallelize(itemRecords)
 
     createParquetFile(itemRecordsRDD, fileLocation)(

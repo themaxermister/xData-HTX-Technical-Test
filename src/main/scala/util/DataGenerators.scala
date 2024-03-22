@@ -77,6 +77,9 @@ case class DataGenerators(location_size: Int, detection_size: Int) {
     (1 to location_size).map(_ => gen.sample.get)
   }
 
+  private def alphanumericString(length: Int): Gen[String] =
+    Gen.listOfN(length, Gen.alphaNumChar).map(_.mkString)
+
   def generateItemData(numRows: Int): Seq[Row] = {
     val gen = for {
       geographical_location <- Gen.choose(Long.MinValue, Long.MaxValue)
@@ -86,7 +89,4 @@ case class DataGenerators(location_size: Int, detection_size: Int) {
 
     (1 to numRows).map(_ => gen.sample.get)
   }
-
-  private def alphanumericString(length: Int): Gen[String] =
-    Gen.listOfN(length, Gen.alphaNumChar).map(_.mkString)
 }

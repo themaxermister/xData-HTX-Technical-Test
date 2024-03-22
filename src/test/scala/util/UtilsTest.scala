@@ -21,7 +21,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api.TestInstance.Lifecycle
 import org.junit.jupiter.api._
 import util.Session.{createParquetFile, createSparkSession}
-import util.Structures.{itemRankRowEncoder, locationRowEncoder}
+import util.Structures.locationRowEncoder
 import util.Utils.{DETECTION_SIZE, LOCATION_SIZE, deleteRecursively, isInt}
 
 @TestMethodOrder(classOf[OrderAnnotation])

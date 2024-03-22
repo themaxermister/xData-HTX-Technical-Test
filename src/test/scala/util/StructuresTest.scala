@@ -53,8 +53,8 @@ class StructuresTest {
     Row(10.toLong, "Item D", 1),
     Row(10.toLong, "Item A", 2),
     Row(20.toLong, "Item B", 3),
-    Row(30.toLong, "Item D", 4),
-    Row(30.toLong, "Item C", 5)
+    Row(30.toLong, "Item C", 4),
+    Row(30.toLong, "Item D", 5)
   )
 
   private val sampleLocationRecords: Seq[Row] = Seq(
@@ -97,6 +97,60 @@ class StructuresTest {
       1.toLong,
       13.toLong,
       "Item A",
+      100.toLong,
+      10.toLong,
+      "Location A"
+    ),
+    Row(
+      10.toLong,
+      1.toLong,
+      14.toLong,
+      "Item A",
+      100.toLong,
+      10.toLong,
+      "Location A"
+    ),
+    Row(
+      10.toLong,
+      1.toLong,
+      15.toLong,
+      "Item D",
+      100.toLong,
+      10.toLong,
+      "Location A"
+    ),
+    Row(
+      10.toLong,
+      1.toLong,
+      16.toLong,
+      "Item D",
+      100.toLong,
+      10.toLong,
+      "Location A"
+    ),
+    Row(
+      10.toLong,
+      1.toLong,
+      17.toLong,
+      "Item D",
+      100.toLong,
+      10.toLong,
+      "Location A"
+    ),
+    Row(
+      10.toLong,
+      1.toLong,
+      18.toLong,
+      "Item D",
+      100.toLong,
+      10.toLong,
+      "Location A"
+    ),
+    Row(
+      10.toLong,
+      1.toLong,
+      19.toLong,
+      "Item D",
       100.toLong,
       10.toLong,
       "Location A"

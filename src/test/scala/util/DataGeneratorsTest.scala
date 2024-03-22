@@ -18,22 +18,23 @@ package util;
 
 import org.junit.jupiter.api.Test
 import util.Structures.detectionRowEncoder
-import util.Utils.{DETECTION_SIZE, LOCATION_SIZE}
 
 class DataGeneratorsTest {
-  private val size = 10
-  private val dataGen = DataGenerators(LOCATION_SIZE, DETECTION_SIZE)
+  private val item_size = 10
+  private val location_size = 100
+  private val detection_size = 1000
+  private val dataGen = DataGenerators(location_size, detection_size)
 
   @Test
   def testGenerateLocationRecords(): Unit = {
-      val locationRecords = dataGen.generateLocationData()
-      assert(locationRecords.length == LOCATION_SIZE)
+    val locationRecords = dataGen.generateLocationData()
+    assert(locationRecords.length == location_size)
   }
 
   @Test
   def testGenerateDetectionRecords(): Unit = {
     val detectionRecords = dataGen.generateDetectionData()
-    assert(detectionRecords.length == DETECTION_SIZE)
+    assert(detectionRecords.length == detection_size)
     val col_index = detectionRowEncoder.schema.fieldIndex("detection_oid")
     val detectionOids = detectionRecords.map(_.get(col_index))
     assert(detectionOids.distinct.length <= detectionOids.length)
@@ -41,7 +42,7 @@ class DataGeneratorsTest {
 
   @Test
   def testGenerateItemRecords(): Unit = {
-    val itemRecords = dataGen.generateItemData(size)
-    assert(itemRecords.length == size)
+    val itemRecords = dataGen.generateItemData(item_size)
+    assert(itemRecords.length == item_size)
   }
 }
