@@ -128,7 +128,7 @@ Unit and integration tests were created to test each function in the code. The t
 
 ### Authors
 
-**Jobelle Lee** - [themaxermister](https://github.com/themaxermister/DEND-Final_Capstone)
+**Jobelle Lee** - [themaxermister](https://github.com/themaxermister/xData-HTX-Technical-Test)
 
 
 
